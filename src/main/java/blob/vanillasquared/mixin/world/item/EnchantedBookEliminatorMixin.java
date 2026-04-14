@@ -22,7 +22,7 @@ public abstract class EnchantedBookEliminatorMixin {
     @Inject(method = "set", at = @At("HEAD"), cancellable = true)
     private <T> void vsq$neutralizeBookEnchantment(DataComponentType<? super T> type, T value,
             CallbackInfoReturnable<T> cir) {
-        if (type == DataComponents.STORED_ENCHANTMENTS) {
+        if (type == DataComponents.STORED_ENCHANTMENTS && value != null) {
             ItemStack stack = (ItemStack) (Object) this;
             if (stack.is(Items.ENCHANTED_BOOK)) {
                 cir.setReturnValue(null);
